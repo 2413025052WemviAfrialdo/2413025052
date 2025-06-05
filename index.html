@@ -4,189 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>WebseitnyaVII</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
       background-color: #f4f4f4;
-      display: flex;
-      flex-direction: row;
     }
 
     header {
-      position: fixed;
-      top: 0;
-      left: 200px;
-      right: 0;
-      background: url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=1600&q=80') no-repeat center center;
-      background-size: cover;
+      background: linear-gradient(to right, #111, #800080);
       color: white;
-      padding: 10px 20px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 2;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      flex-wrap: wrap;
     }
 
     h1 {
       margin: 0;
       font-weight: 600;
-      background: linear-gradient(to right, white, black);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+      font-size: 20px;
     }
 
     .info {
       text-align: right;
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    .sidebar {
-      width: 200px;
-      background: linear-gradient(135deg, #111, #800080);
-      color: white;
-      height: 100vh;
-      padding-top: 60px;
-      position: fixed;
-      left: 0;
-      top: 0;
-      overflow-y: auto;
-    }
-
-    .menu {
-      cursor: pointer;
-      font-size: 18px;
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid #333;
-      transition: background 0.3s;
-      background: linear-gradient(to right, #000000, #007BFF);
-      color: white;
-      font-weight: bold;
-    }
-
-    .menu:hover {
-      background-color: #333;
-    }
-
-    .dropdown {
-      display: none;
-      flex-direction: column;
+    nav {
+      display: flex;
       background-color: #222;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .dropdown.show {
-      display: flex;
-    }
-
-    .dropdown a {
-      background: linear-gradient(to right, #001f3f, #007BFF);
-      margin: 0;
-      padding: 10px 15px;
+    nav a {
       color: white;
+      padding: 15px 25px;
       text-decoration: none;
-      border-bottom: 1px solid #0056b3;
-      transition: background 0.3s, transform 0.2s;
+      display: block;
+      transition: background 0.3s;
     }
 
-    .dropdown a:hover {
-      background-color: #0056b3;
-      transform: translateX(5px);
-    }
-
-    .sub-menu {
-      display: none;
-      flex-direction: column;
-      background-color: #333;
-      padding-left: 20px;
-    }
-
-    .sub-menu.show {
-      display: flex;
-    }
-
-    .sub-menu a {
-      background: linear-gradient(to right, #001f3f, #007BFF);
-      margin: 0;
-      padding: 10px 15px;
-      color: white;
-      text-decoration: none;
-      border-bottom: 1px solid #0056b3;
-      transition: background 0.3s, transform 0.2s;
-      margin-bottom: 10px;
-    }
-
-    .sub-menu a:hover {
-      background-color: #0056b3;
-      transform: translateX(5px);
+    nav a:hover, nav a.active {
+      background-color: #444;
     }
 
     .content {
-      margin-left: 200px;
-      padding-top: 80px;
-      padding-left: 20px;
-      padding-right: 20px;
-      width: 100%;
-      animation: fadeIn 1s ease-in-out;
-      position: relative;
-    }
-
-    .content::after {
-      content: '';
-      position: absolute;
-      top: 60px;
-      left: 20px;
-      width: 100%;
-      height: 100%;
-      background-image: url('3.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.3;
-      filter: brightness(0.8);
-      backdrop-filter: blur(2px);
-      z-index: 1;
+      padding: 20px;
     }
 
     .biodata {
-      background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.7);
       padding: 20px;
       margin: 20px 0;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       text-align: center;
-      transition: transform 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      color: black;
-      z-index: 2;
-    }
-
-    .biodata * {
-      position: relative;
-      z-index: 2;
-    }
-
-    .biodata:hover {
-      transform: scale(1.02);
     }
 
     .biodata img,
     .related-photos img {
-      max-width: 200px;
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       margin-bottom: 15px;
     }
 
-    .biodata h2,
-    .biodata h3,
-    .biodata p,
-    .biodata strong {
-      color: black !important;
-      font-weight: bold;
+    .socials a {
+      margin: 0 10px;
+      font-size: 22px;
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: #0056b3;
     }
 
     .related-photos {
@@ -196,140 +93,146 @@
       gap: 15px;
     }
 
-    .socials {
-      margin-top: 10px;
+    .tugas-section {
+      margin-top: 20px;
     }
 
-    .socials a {
-      margin: 0 10px;
-      font-size: 22px;
+    .tugas-item {
+      margin-bottom: 15px;
+    }
+
+    .tugas-item a {
+      display: inline-block;
+      margin-right: 10px;
       color: #007BFF;
       text-decoration: none;
-      transition: color 0.3s;
+      word-break: break-word;
     }
 
-    .socials a:hover {
-      color: #0056b3;
+    .tugas-item a:hover {
+      text-decoration: underline;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+
+      .info {
+        text-align: left;
+        margin-top: 10px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      nav a {
+        text-align: center;
+        padding: 12px 0;
+      }
+
+      .related-photos {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .socials a {
+        font-size: 26px;
+      }
+
+      h1 {
+        font-size: 18px;
       }
     }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-  <div class="sidebar">
-    <div class="menu" onclick="toggleMenu()">☰ Menu</div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="#" onclick="toggleTasks('homeMenu')">Home</a>
-      <div id="homeMenu" class="sub-menu">
-        <p>Selamat datang di halaman Home saya</p>
-      </div>
-      <a href="#" onclick="toggleTasks('tasksMenu')">Tugas Grafkom</a>
-      <div id="tasksMenu" class="sub-menu">
-        <!-- Tugas 1 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas1SubMenu')">Tugas 1</a>
-          <div id="tugas1SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1Qyu8yeccXgqIzqFOzOTJQrOd9FwSThDW/view?usp=sharing" target="_blank">PDF</a>
-            <a href="https://docs.google.com/presentation/d/1SBuRB558-wNVt6GWHIBHlKCvjtGXeVIc/edit?usp=sharing" target="_blank">PPT</a>
-            <a href="https://drive.google.com/file/d/1MrL11-uFx9LomR2WnSqMQlAAZaRviQin/view?usp=sharing" target="_blank">Video</a>
-          </div>
+  <header>
+    <h1>WebseitnyaVII</h1>
+    <div class="info">
+      <p>NPM: 2413025052</p>
+      <p>Wemvi Afrialdo</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#" id="homeTab" class="active" onclick="showContent('home')">Home</a>
+    <a href="#" id="tugasTab" onclick="showContent('tugas')">Tugas</a>
+  </nav>
+
+  <div class="content">
+    <!-- HOME -->
+    <div id="homeContent">
+      <div class="biodata">
+        <h2>Biodata Saya</h2>
+        <img src="1.jpg" alt="Foto Profil" />
+        <p><i class="fa-solid fa-user"></i> Nama: Wemvi Afrialdo</p>
+        <p><i class="fa-solid fa-cake-candles"></i> Tanggal Lahir: 07 April 2006</p>
+        <p><i class="fa-solid fa-graduation-cap"></i> Jenjang Saat Ini: Mahasiswa</p>
+        <p><i class="fa-solid fa-code"></i> Prodi: Pendidikan Teknologi Informasi</p>
+        <p><i class="fa-solid fa-building-columns"></i> Fakultas: FKIP</p>
+        <p><i class="fa-solid fa-university"></i> Universitas: Universitas Lampung</p>
+        <div class="socials">
+          <a href="https://instagram.com/wemvi_afr" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com/@mv_quotes" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@wem25_" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
-        <!-- Tugas 2 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas2SubMenu')">Tugas 2</a>
-          <div id="tugas2SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/drive/folders/1PsFLsS67ze6YWw5vceeoFROeeyiUJv4f?usp=drive_link" target="_blank">PDF</a>
-            <a href="https://youtu.be/Q-mHrM5MKqM?si=jILwL7WcmvcKW37C" target="_blank">Video</a>
-          </div>
-        </div>
-        <!-- Tugas 3 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas3SubMenu')">Tugas 3</a>
-          <div id="tugas3SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1t71M4yu4M0z5s6jUxPhelNKmmaRW1Uf6/view?usp=sharing" target="_blank">PDF</a>
-            <a href="https://drive.google.com/file/d/1AK-PjwmM14FgH3TPTaSzYlZQhruW0MyM/view?usp=sharing" target="_blank">PPT</a>
-            <a href="https://youtu.be/Fx2TLtZCHuo?si=_D3FK1xOpguwP_A6" target="_blank">Video</a>
-          </div>
-        </div>
-        <!-- Tugas 4 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas4SubMenu')">Tugas 4</a>
-          <div id="tugas4SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1ngqCBkmKxjDESGEauHndHLlmGAy-XlPC/view?usp=drivesdk" target="_blank">PDF</a>
-            <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">PPT</a>
-            <a href="https://youtu.be/kwjHUjfpp9w" target="_blank">Video</a>
-          </div>
-        </div>
-        <!-- Kuis 1 Persamaan Misteri -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas4SubMenu')">Tugas 4</a>
-          <div id="Kuia1SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1__oXhx19dqRF4qDc1TpiPtqirVerYTTZ/view?usp=drive_link" target="_blank">PDF</a>
-            <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">Power Point</a>
-          </div>
+        <h3>Foto Terkait:</h3>
+        <div class="related-photos">
+          <img src="2.jpg" alt="Foto 1" />
+          <img src="3.jpg" alt="Foto 2" />
+          <img src="4.jpg" alt="Foto 3" />
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="content">
-    <header>
-      <h1>WebseitnyaVII</h1>
-      <div class="info">
-        <p>NPM: 2413025052</p>
-        <p>Wemvi Afrialdo</p>
-      </div>
-    </header>
-
-    <div class="biodata">
-      <h2>Biodata Saya</h2>
-      <img src="1.jpg" alt="Foto Profil" />
-      <p><i class="fa-solid fa-user"></i> Nama: Wemvi Afrialdo</p>
-      <p><i class="fa-solid fa-cake-candles"></i> Tanggal Lahir: 07 April 2006</p>
-      <p><i class="fa-solid fa-graduation-cap"></i> Jenjang Saat Ini: Mahasiswa</p>
-      <p><i class="fa-solid fa-code"></i> Prodi: Pendidikan Teknologi Informasi</p>
-      <p><i class="fa-solid fa-building-columns"></i> Fakultas: Fakultas Keguruan Dan Ilmu Pendidikan</p>
-      <p><i class="fa-solid fa-university"></i> Universitas: Universitas Lampung</p>
-      <p><strong>Media Sosial:</strong></p>
-      <div class="socials">
-        <a href="https://instagram.com/wemvi_afr" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://youtube.com/@mv_quotes" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@wem25_" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-      </div>
-      <h3>Foto Terkait:</h3>
-      <div class="related-photos">
-        <img src="2.jpg" alt="Foto 1" />
-        <img src="3.jpg" alt="Foto 2" />
-        <img src="4.jpg" alt="Foto 3" />
+    <!-- TUGAS -->
+    <div id="tugasContent" style="display: none;">
+      <h2>Daftar Tugas</h2>
+      <div class="tugas-section">
+        <div class="tugas-item">
+          <strong>Tugas 1:</strong>
+          <a href="https://drive.google.com/file/d/1Qyu8yeccXgqIzqFOzOTJQrOd9FwSThDW/view?usp=sharing" target="_blank">PDF</a>
+          <a href="https://docs.google.com/presentation/d/1SBuRB558-wNVt6GWHIBHlKCvjtGXeVIc/edit?usp=sharing" target="_blank">PPT</a>
+          <a href="https://drive.google.com/file/d/1MrL11-uFx9LomR2WnSqMQlAAZaRviQin/view?usp=sharing" target="_blank">Video</a>
+        </div>
+        <div class="tugas-item">
+          <strong>Tugas 2:</strong>
+          <a href="https://drive.google.com/drive/folders/1PsFLsS67ze6YWw5vceeoFROeeyiUJv4f?usp=drive_link" target="_blank">PDF</a>
+          <a href="https://youtu.be/Q-mHrM5MKq?si=jILwL7WcmvcKW37C" target="_blank">Video</a>
+        </div>
+        <div class="tugas-item">
+          <strong>Tugas 3:</strong>
+          <a href="https://drive.google.com/file/d/1t71M4yu4M0z5s6jUxPhelNKmmaRW1Uf6/view?usp=sharing" target="_blank">PDF</a>
+          <a href="https://drive.google.com/file/d/1AK-PjwmM14FgH3TPTaSzYlZQhruW0MyM/view?usp=sharing" target="_blank">PPT</a>
+          <a href="https://youtu.be/Fx2TLtZCHuo?si=_D3FK1xOpguwP_A6" target="_blank">Video</a>
+        </div>
+        <div class="tugas-item">
+          <strong>Tugas 4:</strong>
+          <a href="https://drive.google.com/file/d/1ngqCBkmKxjDESGEauHndHLlmGAy-XlPC/view?usp=drivesdk" target="_blank">PDF</a>
+          <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">PPT</a>
+          <a href="https://youtu.be/kwjHUjfpp9w" target="_blank">Video</a>
+        </div>
+        <div class="tugas-item">
+          <strong>Kuis 1 - Persamaan Misteri:</strong>
+          <a href="https://drive.google.com/file/d/1__oXhx19dqRF4qDc1TpiPtqirVerYTTZ/view?usp=drive_link" target="_blank">PDF</a>
+          <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">PowerPoint</a>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    function toggleMenu() {
-      const dropdown = document.getElementById("dropdownMenu");
-      dropdown.classList.toggle("show");
-    }
-
-    function toggleTasks(menuId) {
-      const menu = document.getElementById(menuId);
-      menu.classList.toggle("show");
-    }
-
-    function toggleSubMenu(subMenuId) {
-      const subMenu = document.getElementById(subMenuId);
-      subMenu.classList.toggle("show");
+    function showContent(section) {
+      document.getElementById('homeContent').style.display = section === 'home' ? 'block' : 'none';
+      document.getElementById('tugasContent').style.display = section === 'tugas' ? 'block' : 'none';
+      document.getElementById('homeTab').classList.toggle('active', section === 'home');
+      document.getElementById('tugasTab').classList.toggle('active', section === 'tugas');
     }
   </script>
 
