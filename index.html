@@ -84,6 +84,7 @@
 
     .dropdown a {
       background: linear-gradient(to right, #001f3f, #007BFF);
+      margin: 0;
       padding: 10px 15px;
       color: white;
       text-decoration: none;
@@ -109,6 +110,7 @@
 
     .sub-menu a {
       background: linear-gradient(to right, #001f3f, #007BFF);
+      margin: 0;
       padding: 10px 15px;
       color: white;
       text-decoration: none;
@@ -171,12 +173,12 @@
       transform: scale(1.02);
     }
 
-    .biodata img {
-      width: 180px;
-      height: auto;
-      border-radius: 50%;
-      margin-bottom: 15px;
+    .biodata img,
+    .related-photos img {
+      max-width: 200px;
+      border-radius: 8px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 15px;
     }
 
     .biodata h2,
@@ -192,14 +194,6 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 15px;
-    }
-
-    .related-photos img {
-      width: 120px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-      margin: 5px;
     }
 
     .socials {
@@ -228,34 +222,6 @@
         transform: translateY(0);
       }
     }
-
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-      }
-
-      header {
-        left: 0;
-      }
-
-      .content {
-        margin-left: 0;
-      }
-
-      .biodata img {
-        width: 140px;
-      }
-
-      .related-photos img {
-        width: 100px;
-      }
-    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
@@ -268,18 +234,51 @@
       <div id="homeMenu" class="sub-menu">
         <p>Selamat datang di halaman Home saya</p>
       </div>
-      <a href="#" onclick="toggleTasks('tasksMenu')">Tugas</a>
+      <a href="#" onclick="toggleTasks('tasksMenu')">Tugas Grafkom</a>
       <div id="tasksMenu" class="sub-menu">
-        <!-- Tugas-tugas -->
+        <!-- Tugas 1 -->
         <div>
           <a href="#" onclick="toggleSubMenu('tugas1SubMenu')">Tugas 1</a>
           <div id="tugas1SubMenu" class="sub-menu">
-            <a href="#">PDF</a>
-            <a href="#">PPT</a>
-            <a href="#">Video</a>
+            <a href="https://drive.google.com/file/d/1Qyu8yeccXgqIzqFOzOTJQrOd9FwSThDW/view?usp=sharing" target="_blank">PDF</a>
+            <a href="https://docs.google.com/presentation/d/1SBuRB558-wNVt6GWHIBHlKCvjtGXeVIc/edit?usp=sharing" target="_blank">PPT</a>
+            <a href="https://drive.google.com/file/d/1MrL11-uFx9LomR2WnSqMQlAAZaRviQin/view?usp=sharing" target="_blank">Video</a>
           </div>
         </div>
-        <!-- Tambahan tugas lain -->
+        <!-- Tugas 2 -->
+        <div>
+          <a href="#" onclick="toggleSubMenu('tugas2SubMenu')">Tugas 2</a>
+          <div id="tugas2SubMenu" class="sub-menu">
+            <a href="https://drive.google.com/drive/folders/1PsFLsS67ze6YWw5vceeoFROeeyiUJv4f?usp=drive_link" target="_blank">PDF</a>
+            <a href="https://youtu.be/Q-mHrM5MKqM?si=jILwL7WcmvcKW37C" target="_blank">Video</a>
+          </div>
+        </div>
+        <!-- Tugas 3 -->
+        <div>
+          <a href="#" onclick="toggleSubMenu('tugas3SubMenu')">Tugas 3</a>
+          <div id="tugas3SubMenu" class="sub-menu">
+            <a href="https://drive.google.com/file/d/1t71M4yu4M0z5s6jUxPhelNKmmaRW1Uf6/view?usp=sharing" target="_blank">PDF</a>
+            <a href="https://drive.google.com/file/d/1AK-PjwmM14FgH3TPTaSzYlZQhruW0MyM/view?usp=sharing" target="_blank">PPT</a>
+            <a href="https://youtu.be/Fx2TLtZCHuo?si=_D3FK1xOpguwP_A6" target="_blank">Video</a>
+          </div>
+        </div>
+        <!-- Tugas 4 -->
+        <div>
+          <a href="#" onclick="toggleSubMenu('tugas4SubMenu')">Tugas 4</a>
+          <div id="tugas4SubMenu" class="sub-menu">
+            <a href="https://drive.google.com/file/d/1ngqCBkmKxjDESGEauHndHLlmGAy-XlPC/view?usp=drivesdk" target="_blank">PDF</a>
+            <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">PPT</a>
+            <a href="https://youtu.be/kwjHUjfpp9w" target="_blank">Video</a>
+          </div>
+        </div>
+        <!-- Kuis 1 Persamaan Misteri -->
+        <div>
+          <a href="#" onclick="toggleSubMenu('tugas4SubMenu')">Tugas 4</a>
+          <div id="Kuia1SubMenu" class="sub-menu">
+            <a href="https://drive.google.com/file/d/1__oXhx19dqRF4qDc1TpiPtqirVerYTTZ/view?usp=drive_link" target="_blank">PDF</a>
+            <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">Power Point</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -333,5 +332,6 @@
       subMenu.classList.toggle("show");
     }
   </script>
+
 </body>
 </html>
