@@ -2,336 +2,519 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WebseitnyaVII</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WebseitnyaVII - Profil & Tugas Grafkom</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #f4f4f4;
-      display: flex;
-      flex-direction: row;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+    /* Reset and base */
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
 
+    html, body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      color: #6b7280;
+      height: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar */
+    nav.sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100vh;
+      padding-top: 60px;
+      background: linear-gradient(135deg, #111, #800080);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-radius: 0 0.75rem 0.75rem 0;
+      box-shadow: 4px 0 12px rgba(128, 0, 128, 0.3);
+      z-index: 1000;
+    }
+
+    nav.sidebar a {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+      border-radius: 0 8px 8px 0;
+      background: linear-gradient(to right, #000, #007bff);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav.sidebar a .icon {
+      font-size: 20px;
+    }
+
+    nav.sidebar a.active,
+    nav.sidebar a:hover,
+    nav.sidebar a:focus {
+      background-color: #0056b3;
+      box-shadow: 0 0 10px #007bffaa;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Header */
     header {
       position: fixed;
       top: 0;
       left: 200px;
       right: 0;
-      background: url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=1600&q=80') no-repeat center center;
-      background-size: cover;
+      height: 80px;
+      background: url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=1600&q=80') center center/cover no-repeat;
       color: white;
-      padding: 10px 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      z-index: 2;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      padding: 0 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+      z-index: 900;
+      user-select: none;
     }
 
-    h1 {
+    header h1 {
+      font-size: 48px;
+      font-weight: 700;
       margin: 0;
-      font-weight: 600;
       background: linear-gradient(to right, white, black);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
     }
 
-    .info {
-      text-align: right;
-      font-size: 14px;
-    }
-
-    .sidebar {
-      width: 200px;
-      background: linear-gradient(135deg, #111, #800080);
-      color: white;
-      height: 100vh;
-      padding-top: 60px;
-      position: fixed;
-      left: 0;
-      top: 0;
-      overflow-y: auto;
-    }
-
-    .menu {
-      cursor: pointer;
-      font-size: 18px;
-      padding: 15px;
-      text-align: left;
-      border-bottom: 1px solid #333;
-      transition: background 0.3s;
-      background: linear-gradient(to right, #000000, #007BFF);
-      color: white;
-      font-weight: bold;
-    }
-
-    .menu:hover {
-      background-color: #333;
-    }
-
-    .dropdown {
-      display: none;
-      flex-direction: column;
-      background-color: #222;
-    }
-
-    .dropdown.show {
-      display: flex;
-    }
-
-    .dropdown a {
-      background: linear-gradient(to right, #001f3f, #007BFF);
-      margin: 0;
-      padding: 10px 15px;
-      color: white;
-      text-decoration: none;
-      border-bottom: 1px solid #0056b3;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .dropdown a:hover {
-      background-color: #0056b3;
-      transform: translateX(5px);
-    }
-
-    .sub-menu {
-      display: none;
-      flex-direction: column;
-      background-color: #333;
-      padding-left: 20px;
-    }
-
-    .sub-menu.show {
-      display: flex;
-    }
-
-    .sub-menu a {
-      background: linear-gradient(to right, #001f3f, #007BFF);
-      margin: 0;
-      padding: 10px 15px;
-      color: white;
-      text-decoration: none;
-      border-bottom: 1px solid #0056b3;
-      transition: background 0.3s, transform 0.2s;
-      margin-bottom: 10px;
-    }
-
-    .sub-menu a:hover {
-      background-color: #0056b3;
-      transform: translateX(5px);
-    }
-
-    .content {
+    /* Main content container */
+    main.container {
       margin-left: 200px;
-      padding-top: 80px;
-      padding-left: 20px;
-      padding-right: 20px;
+      margin-top: 80px;
+      max-width: 1200px;
       width: 100%;
-      animation: fadeIn 1s ease-in-out;
+      padding: 40px 40px 80px;
+      background-color: #fff;
       position: relative;
+      min-height: calc(100vh - 80px);
     }
 
-    .content::after {
-      content: '';
-      position: absolute;
-      top: 60px;
-      left: 20px;
-      width: 100%;
-      height: 100%;
-      background-image: url('3.jpg');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.3;
-      filter: brightness(0.8);
-      backdrop-filter: blur(2px);
-      z-index: 1;
+    /* Sections */
+    section.content-section {
+      display: none;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    section.content-section.active {
+      display: block;
     }
 
-    .biodata {
-      background: rgba(255, 255, 255, 0.5);
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      transition: transform 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      color: black;
-      z-index: 2;
-    }
-
-    .biodata * {
-      position: relative;
-      z-index: 2;
-    }
-
-    .biodata:hover {
-      transform: scale(1.02);
-    }
-
-    .biodata img,
-    .related-photos img {
-      max-width: 200px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      margin-bottom: 15px;
-    }
-
-    .biodata h2,
-    .biodata h3,
-    .biodata p,
-    .biodata strong {
-      color: black !important;
-      font-weight: bold;
-    }
-
-    .related-photos {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .socials {
-      margin-top: 10px;
-    }
-
-    .socials a {
-      margin: 0 10px;
-      font-size: 22px;
-      color: #007BFF;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .socials a:hover {
-      color: #0056b3;
-    }
-
-    @keyframes fadeIn {
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
+    /* Profile Card */
+    .biodata {
+      background: #f9fafb;
+      border-radius: 0.75rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 32px 40px;
+      text-align: center;
+      color: #374151;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    .biodata:hover {
+      transform: scale(1.03);
+    }
+    .biodata img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 25px rgba(126,58,242,0.3);
+      margin-bottom: 20px;
+    }
+    .biodata h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #7e3af2;
+      margin-bottom: 16px;
+    }
+    .biodata p {
+      font-weight: 600;
+      font-size: 16px;
+      color: #4b5563;
+      margin: 8px 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
+    }
+    .biodata p i {
+      color: #7e3af2;
+      min-width: 22px;
+      text-align: center;
+    }
+    .socials {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+    }
+    .socials a {
+      text-decoration: none;
+      color: #7e3af2;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 20px;
+      transition: color 0.3s ease;
+    }
+    .socials a:hover,
+    .socials a:focus {
+      color: #4c1d95;
+    }
+    .socials a i {
+      font-size: 24px;
+    }
+    .related-photos {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .related-photos img {
+      width: 140px;
+      height: 95px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(126, 58, 242, 0.15);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .related-photos img:hover,
+    .related-photos img:focus {
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Tugas list */
+    .tugas-list {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #f9fafb;
+      padding: 32px 40px;
+      border-radius: 0.75rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      color: #374151;
+    }
+    .tugas-list h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #7e3af2;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .tugas-item {
+      margin-bottom: 26px;
+    }
+    .tugas-item h3 {
+      font-weight: 700;
+      font-size: 24px;
+      color: #3b82f6;
+      margin-bottom: 14px;
+    }
+    .tugas-item .links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .tugas-item .links a {
+      background: #2563eb;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
+      flex: 1 1 130px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    .tugas-item .links a:hover,
+    .tugas-item .links a:focus {
+      background: #1e40af;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      nav.sidebar {
+        width: 100%;
+        height: auto;
+        padding: 12px 0;
+        flex-direction: row;
+        justify-content: space-around;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      nav.sidebar a {
+        margin: 0 6px;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-size: 16px;
+      }
+      nav.sidebar a.active,
+      nav.sidebar a:hover,
+      nav.sidebar a:focus {
+        background-color: #2563eb;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.6);
+      }
+      header {
+        position: relative;
+        left: 0;
+        right: 0;
+        height: auto;
+        padding: 20px 20px 30px;
+        text-align: center;
+        box-shadow: none;
+      }
+      header h1 {
+        font-size: 36px;
+        background: none;
+        -webkit-text-fill-color: #7e3af2;
+        -webkit-background-clip: unset;
+        text-shadow: none;
+      }
+      main.container {
+        margin: 0;
+        padding: 24px 20px 60px;
+        max-width: 100%;
+      }
+      .biodata, .tugas-list {
+        padding: 24px 20px;
+        margin: 20px auto;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(126, 58, 242, 0.15);
+      }
+      .tugas-item .links a {
+        flex: 1 1 100%;
+      }
+      .related-photos img {
+        width: 100px;
+        height: 70px;
+      }
+    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+  <nav class="sidebar" aria-label="Primary navigation">
+    <a href="#" id="navProfil" class="active" role="tab" aria-selected="true" tabindex="0"><i class="fa-solid fa-user icon"></i> Profil</a>
+    <a href="#" id="navTugas" role="tab" aria-selected="false" tabindex="0"><i class="fa-solid fa-file-lines icon"></i> Tugas Grafkom</a>
+  </nav>
 
-  <div class="sidebar">
-    <div class="menu" onclick="toggleMenu()">☰ Menu</div>
-    <div class="dropdown" id="dropdownMenu">
-      <a href="#" onclick="toggleTasks('homeMenu')">Home</a>
-      <div id="homeMenu" class="sub-menu">
-        <p>Selamat datang di halaman Home saya</p>
-      </div>
-      <a href="#" onclick="toggleTasks('tasksMenu')">Tugas Grafkom</a>
-      <div id="tasksMenu" class="sub-menu">
-        <!-- Tugas 1 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas1SubMenu')">Tugas 1</a>
-          <div id="tugas1SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1Qyu8yeccXgqIzqFOzOTJQrOd9FwSThDW/view?usp=sharing" target="_blank">PDF</a>
-            <a href="https://docs.google.com/presentation/d/1SBuRB558-wNVt6GWHIBHlKCvjtGXeVIc/edit?usp=sharing" target="_blank">PPT</a>
-            <a href="https://drive.google.com/file/d/1MrL11-uFx9LomR2WnSqMQlAAZaRviQin/view?usp=sharing" target="_blank">Video</a>
-          </div>
-        </div>
-        <!-- Tugas 2 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas2SubMenu')">Tugas 2</a>
-          <div id="tugas2SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/drive/folders/1PsFLsS67ze6YWw5vceeoFROeeyiUJv4f?usp=drive_link" target="_blank">PDF</a>
-            <a href="https://youtu.be/Q-mHrM5MKqM?si=jILwL7WcmvcKW37C" target="_blank">Video</a>
-          </div>
-        </div>
-        <!-- Tugas 3 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas3SubMenu')">Tugas 3</a>
-          <div id="tugas3SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1t71M4yu4M0z5s6jUxPhelNKmmaRW1Uf6/view?usp=sharing" target="_blank">PDF</a>
-            <a href="https://drive.google.com/file/d/1AK-PjwmM14FgH3TPTaSzYlZQhruW0MyM/view?usp=sharing" target="_blank">PPT</a>
-            <a href="https://youtu.be/Fx2TLtZCHuo?si=_D3FK1xOpguwP_A6" target="_blank">Video</a>
-          </div>
-        </div>
-        <!-- Tugas 4 -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas4SubMenu')">Tugas 4</a>
-          <div id="tugas4SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1ngqCBkmKxjDESGEauHndHLlmGAy-XlPC/view?usp=drivesdk" target="_blank">PDF</a>
-            <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">PPT</a>
-            <a href="https://youtu.be/kwjHUjfpp9w" target="_blank">Video</a>
-          </div>
-        </div>
-        <!-- Kuis 1 Persamaan Misteri -->
-        <div>
-          <a href="#" onclick="toggleSubMenu('tugas4SubMenu')">Tugas 4</a>
-          <div id="Kuia1SubMenu" class="sub-menu">
-            <a href="https://drive.google.com/file/d/1__oXhx19dqRF4qDc1TpiPtqirVerYTTZ/view?usp=drive_link" target="_blank">PDF</a>
-            <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank">Power Point</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <header role="banner" aria-label="Header utama">
+    <h1>WebseitnyaVII</h1>
+  </header>
 
-  <div class="content">
-    <header>
-      <h1>WebseitnyaVII</h1>
-      <div class="info">
-        <p>NPM: 2413025052</p>
-        <p>Wemvi Afrialdo</p>
-      </div>
-    </header>
+  <main class="container" tabindex="-1">
+    <section id="profilSection" class="content-section active" role="tabpanel" aria-labelledby="navProfil">
+      <article class="biodata">
+        <h2>Biodata Saya</h2>
+        <img src="1.jpg" alt="Foto Profil Wemvi Afrialdo" />
+        <p><i class="fa-solid fa-user"></i> Nama: Wemvi Afrialdo</p>
+        <p><i class="fa-solid fa-cake-candles"></i> Tanggal Lahir: 07 April 2006</p>
+        <p><i class="fa-solid fa-graduation-cap"></i> Jenjang Saat Ini: Mahasiswa</p>
+        <p><i class="fa-solid fa-code"></i> Prodi: Pendidikan Teknologi Informasi</p>
+        <p><i class="fa-solid fa-building-columns"></i> Fakultas: Fakultas Keguruan Dan Ilmu Pendidikan</p>
+        <p><i class="fa-solid fa-university"></i> Universitas: Universitas Lampung</p>
+        <strong>Media Sosial:</strong>
+        <div class="socials">
+          <a href="https://instagram.com/wemvi_afr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="https://youtube.com/@mv_quotes" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a>
+          <a href="https://www.tiktok.com/@wem25_" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a>
+        </div>
+        <h3>Foto Terkait:</h3>
+        <div class="related-photos" aria-label="Foto Terkait">
+          <img src="2.jpg" alt="Foto 1" />
+          <img src="3.jpg" alt="Foto 2" />
+          <img src="4.jpg" alt="Foto 3" />
+        </div>
+      </article>
+    </section>
 
-    <div class="biodata">
-      <h2>Biodata Saya</h2>
-      <img src="1.jpg" alt="Foto Profil" />
-      <p><i class="fa-solid fa-user"></i> Nama: Wemvi Afrialdo</p>
-      <p><i class="fa-solid fa-cake-candles"></i> Tanggal Lahir: 07 April 2006</p>
-      <p><i class="fa-solid fa-graduation-cap"></i> Jenjang Saat Ini: Mahasiswa</p>
-      <p><i class="fa-solid fa-code"></i> Prodi: Pendidikan Teknologi Informasi</p>
-      <p><i class="fa-solid fa-building-columns"></i> Fakultas: Fakultas Keguruan Dan Ilmu Pendidikan</p>
-      <p><i class="fa-solid fa-university"></i> Universitas: Universitas Lampung</p>
-      <p><strong>Media Sosial:</strong></p>
-      <div class="socials">
-        <a href="https://instagram.com/wemvi_afr" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://youtube.com/@mv_quotes" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-        <a href="https://www.tiktok.com/@wem25_" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-      </div>
-      <h3>Foto Terkait:</h3>
-      <div class="related-photos">
-        <img src="2.jpg" alt="Foto 1" />
-        <img src="3.jpg" alt="Foto 2" />
-        <img src="4.jpg" alt="Foto 3" />
-      </div>
-    </div>
-  </div>
+    <section id="tugasSection" class="content-section" role="tabpanel" aria-labelledby="navTugas" tabindex="0">
+      <article class="tugas-list">
+        <h2>Daftar Tugas Grafkom</h2>
+
+        <div class="tugas-item">
+          <h3>TUGAS 1</h3>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1Qyu8yeccXgqIzqFOzOTJQrOd9FwSThDW/view?usp=sharing" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+            <a href="https://docs.google.com/presentation/d/1SBuRB558-wNVt6GWHIBHlKCvjtGXeVIc/edit?usp=sharing" target="_blank" rel="noopener noreferrer">PPT</a>
+            <a href="https://drive.google.com/file/d/1MrL11-uFx9LomR2WnSqMQlAAZaRviQin/view?usp=sharing" target="_blank" rel="noopener noreferrer">Video</a>
+          </div>
+        </div>
+
+        <div class="tugas-item">
+          <h3>TUGAS 2</h3>
+          <div class="links">
+            <a href="https://drive.google.com/drive/folders/1PsFLsS67ze6YWw5vceeoFROeeyiUJv4f?usp=drive_link" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">PPT</a>
+            <a href="https://youtu.be/Q-mHrM5MKqM?si=jILwL7WcmvcKW37C" target="_blank" rel="noopener noreferrer">Video</a>
+          </div>
+        </div>
+
+        <div class="tugas-item">
+          <h3>TUGAS 3</h3>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1t71M4yu4M0z5s6jUxPhelNKmmaRW1Uf6/view?usp=sharing" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+            <a href="https://drive.google.com/file/d/1AK-PjwmM14FgH3TPTaSzYlZQhruW0MyM/view?usp=sharing" target="_blank" rel="noopener noreferrer">PPT</a>
+            <a href="https://youtu.be/Fx2TLtZCHuo?si=_D3FK1xOpguwP_A6" target="_blank" rel="noopener noreferrer">Video</a>
+          </div>
+        </div>
+
+        <div class="tugas-item">
+          <h3>TUGAS 4</h3>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1ngqCBkmKxjDESGEauHndHLlmGAy-XlPC/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+            <a href="https://drive.google.com/file/d/1lNHh0FFJxcZvA5HyW9i82h2tFVWkJg2r/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">PPT</a>
+            <a href="https://youtu.be/kwjHUjfpp9w" target="_blank" rel="noopener noreferrer">Video</a>
+          </div>
+        </div>
+
+        <div class="tugas-item">
+          <h3>KUIS 1</h3>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1__oXhx19dqRF4qDc1TpiPtqirVerYTTZ/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+          </div>
+        </div>
+
+        <div class="tugas-item">
+          <h3>KUIS 2</h3>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1VqH2LBR6YoiozeThemIVVGlhFpMrj8rz/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+            <a href="https://drive.google.com/file/d/1UMKfnPtTOfgjyfiuddwL05n8Wb04BvAZ/view?usp=drive_link" target="_blank" rel="noopener noreferrer">PPT</a>
+            <a href="https://youtu.be/CJjHQtlIOkI?si=eWAvnEAmCb0R7yHz" target="_blank" rel="noopener noreferrer">Video</a>
+          </div>
+        </div>
+
+        <div class="tugas-item">
+          <h3>KUIS 3</h3>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1KUGtKb5-LV-lXkGn-LFfjEavTqN91hVG/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+            <a href="https://drive.google.com/file/d/1KUGtKb5-LV-lXkGn-LFfjEavTqN91hVG/view?usp=drive_link" target="_blank" rel="noopener noreferrer">PPT</a>
+            <a href="https://youtu.be/m6z8OMwSM0Y?si=Y7irnTwcnfpbeJEX  " target="_blank" rel="noopener noreferrer">Video</a>
+          </div>
+        </div>
+
+        <div class="tugas-item">
+          <h3>KUIS 4</h3>
+          <div class="links">
+            <a href="https://drive.google.com/file/d/1hIhpo6RxxtTooMNVPSttFbmJ0rUwjLjl/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Makalah PDF</a>
+            <a href="https://youtu.be/GykXsPqLJkI?si=tiyfgcJeJ2itsr1j" target="_blank" rel="noopener noreferrer">Video</a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
 
   <script>
-    function toggleMenu() {
-      const dropdown = document.getElementById("dropdownMenu");
-      dropdown.classList.toggle("show");
+    const navProfil = document.getElementById('navProfil');
+    const navTugas = document.getElementById('navTugas');
+    const profilSection = document.getElementById('profilSection');
+    const tugasSection = document.getElementById('tugasSection');
+
+    function setActiveTab(activeTab) {
+      if (activeTab === 'profil') {
+        navProfil.classList.add('active');
+        navProfil.setAttribute('aria-selected', 'true');
+        navProfil.tabIndex = 0;
+
+        navTugas.classList.remove('active');
+        navTugas.setAttribute('aria-selected', 'false');
+        navTugas.tabIndex = -1;
+
+        profilSection.classList.add('active');
+        profilSection.focus();
+        profilSection.setAttribute('aria-hidden', 'false');
+
+        tugasSection.classList.remove('active');
+        tugasSection.setAttribute('aria-hidden', 'true');
+      } else {
+        navTugas.classList.add('active');
+        navTugas.setAttribute('aria-selected', 'true');
+        navTugas.tabIndex = 0;
+
+        navProfil.classList.remove('active');
+        navProfil.setAttribute('aria-selected', 'false');
+        navProfil.tabIndex = -1;
+
+        tugasSection.classList.add('active');
+        tugasSection.focus();
+        tugasSection.setAttribute('aria-hidden', 'false');
+
+        profilSection.classList.remove('active');
+        profilSection.setAttribute('aria-hidden', 'true');
+      }
     }
 
-    function toggleTasks(menuId) {
-      const menu = document.getElementById(menuId);
-      menu.classList.toggle("show");
-    }
+    navProfil.addEventListener('click', e => {
+      e.preventDefault();
+      setActiveTab('profil');
+    });
+    navTugas.addEventListener('click', e => {
+      e.preventDefault();
+      setActiveTab('tugas');
+    });
 
-    function toggleSubMenu(subMenuId) {
-      const subMenu = document.getElementById(subMenuId);
-      subMenu.classList.toggle("show");
-    }
+    navProfil.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveTab('profil');
+      }
+    });
+    navTugas.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveTab('tugas');
+      }
+    });
+
+    // Initialize with Profil active
+    setActiveTab('profil');
   </script>
-
 </body>
 </html>
